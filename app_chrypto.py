@@ -1,25 +1,17 @@
 import os
 import streamlit as st
 import pandas as pd
-# import pandas_datareader as dr
+import pandas_datareader as dr
 import numpy as np
 from datetime import datetime
 import matplotlib.pyplot as plt
 import plotly.express as px
-from PIL import Image
-import pandas as pd
-import pandas_datareader as dr
-import base64
 from bs4 import BeautifulSoup
 import requests
 import json
 import time
 
-primaryColor="#F63366"
-backgroundColor="#FFFFFF"
-secondaryBackgroundColor="#F0F2F6"
-textColor="#F63366"
-font="sans serif"
+
 
 
 
