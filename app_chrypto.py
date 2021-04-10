@@ -1,7 +1,7 @@
 import os
 import streamlit as st
 import pandas as pd
-import pandas_datareader as dr
+# import pandas_datareader as dr
 import numpy as np
 from datetime import datetime
 import matplotlib.pyplot as plt
