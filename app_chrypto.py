@@ -214,8 +214,8 @@ col2.markdown('**Evolution sur 24h**')
 col2.dataframe(df_coins.set_index('coin_symbol') [[ 'coin_name' , 'price' , 
 'percentChange24h' ] ].rename ( columns = {  'percentChange1h' : '%1h' , 'percentChange24h' : '%24h' , 'percentChange7d' : '%7d'  }) .sort_values ( by = '%24h' , ascending = False) )
 
-df_1h = df_coins.sort_values ( by = 'percentChange1h' , ascending = False).head(8)
-df_7d = df_coins.sort_values ( by = 'percentChange7d' , ascending = False).head(8)
+df_1h = df_coins.sort_values ( by = 'percentChange1h' , ascending = False)
+df_7d = df_coins.sort_values ( by = 'percentChange7d' , ascending = False)
 
 col2.markdown('**Evolution sur 1 heure**')
 col2.dataframe ( df_1h.set_index('coin_symbol')  .rename ( columns = {  'percentChange1h' : '%1h' } ) [['%1h' , 'price']] )
