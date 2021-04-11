@@ -75,9 +75,6 @@ expander_bar.markdown("""
 
 #---------------------------------------------------------------------------------------------------
 # api Yahoo :
-col2.markdown('''
-
-''')
 
 @st.cache
 def get_yahoo_courbe ():
@@ -207,39 +204,39 @@ def filedownload(df):
     href = f'<a href="data:file/csv;base64,{b64}" download="crypto.csv">Download CSV File</a>'
     return href
 
-col2.title ('Today Cryptocurrency Prices by Market Cap')
+st.title ('Today Cryptocurrency Prices by Market Cap')
 # col2.dataframe(df_coins [['coin_name' , 'coin_symbol'  ]].set_index ('coin_symbol' ) )
 
 df_1h = df_coins.sort_values ( by = 'percentChange1h' , ascending = False)
 df_7d = df_coins.sort_values ( by = 'percentChange7d' , ascending = False)
 
-col2.markdown('**Evolution sur 1 heure**')
-col2.dataframe ( df_1h.set_index('coin_symbol')  .rename ( columns = {  'percentChange1h' : '%1h' } ) [['%1h' , 'price']] )
+st.markdown('**Evolution sur 1 heure**')
+st.dataframe ( df_1h.set_index('coin_symbol')  .rename ( columns = {  'percentChange1h' : '%1h' } ) [['%1h' , 'price']] )
 
-col2.markdown('**Evolution sur 24h**')
-col2.dataframe(df_coins.set_index('coin_symbol') [[ 'percentChange24h' , 'price' ] ].rename ( columns = {  'percentChange24h' : '%24h' }) .sort_values ( by = '%24h' , ascending = False) )
+st.markdown('**Evolution sur 24h**')
+st.dataframe(df_coins.set_index('coin_symbol') [[ 'percentChange24h' , 'price' ] ].rename ( columns = {  'percentChange24h' : '%24h' }) .sort_values ( by = '%24h' , ascending = False) )
 
 
-col2.markdown('**Evolution sur 7 jours**')
-col2.dataframe ( df_7d.set_index('coin_symbol')  .rename ( columns = {  'percentChange7d' : '%7d' } ) [['%7d' , 'price']] )
+st.markdown('**Evolution sur 7 jours**')
+st.dataframe ( df_7d.set_index('coin_symbol')  .rename ( columns = {  'percentChange7d' : '%7d' } ) [['%7d' , 'price']] )
 
 
 #---------------------------------------------------------------------------------------------------
 # courbe Yahoo 
-col2.title('Courbes Cryptocurrency (Yahoo)')
+st.title('Courbes Cryptocurrency (Yahoo)')
 
 plotly_figure_intro_crypto = px.line(data_frame = df_crypto, 
                         x = df_crypto.index, 
                         y = ['Close' ] , 
                         title = titre_intro + ' - Cours' )
-col2.plotly_chart ( plotly_figure_intro_crypto)
+st.plotly_chart ( plotly_figure_intro_crypto)
 
 df_crypto_reduced = df_crypto.tail (selection_temps)
 plotly_figure_intro_crypto_r = px.line(data_frame =df_crypto_reduced, 
                         x = df_crypto_reduced.index, 
                         y = ['Close' ] , 
                         title = titre_intro + ' - Last ' + str (selection_temps)+ ' days' )
-col2.plotly_chart ( plotly_figure_intro_crypto_r)
+st.plotly_chart ( plotly_figure_intro_crypto_r)
 
 
 
@@ -252,7 +249,7 @@ col2.plotly_chart ( plotly_figure_intro_crypto_r)
 
 #---------------------------------------------------------------------------------------------------
 #  Bar plot evolution du prix :
-col2.title('Evolution du prix (%) - Coinmarketcap')
+st.title('Evolution du prix (%) - Coinmarketcap')
 
 # st.header('Table of % Price Change')
 df_change = pd.concat([df_coins.coin_symbol, df_coins.percentChange1h, df_coins.percentChange24h, df_coins.percentChange7d], axis=1)
@@ -267,27 +264,27 @@ df_change['positive_percent_change_7d'] = df_change['percentChange7d'] > 0
 if percent_timeframe == '7d':
     if sort_values == 'Yes':
         df_change = df_change.sort_values(by=['percentChange7d'])
-    col2.write('*7 days period*')
+    st.write('*7 days period*')
     plt.figure(figsize=(5,25))
     plt.subplots_adjust(top = 1, bottom = 0)
     df_change['percentChange7d'].plot(kind='barh', color=df_change.positive_percent_change_7d.map({True: 'g', False: 'r'}))
-    col2.pyplot(plt)
+    st.pyplot(plt)
 elif percent_timeframe == '24h':
     if sort_values == 'Yes':
         df_change = df_change.sort_values(by=['percentChange24h'])
-    col2.write('*24 hour period*')
+    st.write('*24 hour period*')
     plt.figure(figsize=(5,25))
     plt.subplots_adjust(top = 1, bottom = 0)
     df_change['percentChange24h'].plot(kind='barh', color=df_change.positive_percent_change_24h.map({True: 'g', False: 'r'}))
-    col2.pyplot(plt)
+    st.pyplot(plt)
 else:
     if sort_values == 'Yes':
         df_change = df_change.sort_values(by=['percentChange1h'])
-    col2.write('*1 hour period*')
+    st.write('*1 hour period*')
     plt.figure(figsize=(5,25))
     plt.subplots_adjust(top = 1, bottom = 0)
     df_change['percentChange1h'].plot(kind='barh', color=df_change.positive_percent_change_1h.map({True: 'g', False: 'r'}))
-    col2.pyplot(plt)
+    st.pyplot(plt)
 
 col1.title ('Dictionnaire')
 col1.dataframe(df_coins [['coin_name' , 'coin_symbol'  ]].set_index ('coin_symbol' ).sort_index() )
