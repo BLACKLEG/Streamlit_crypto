@@ -31,28 +31,6 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# image = Image.open('logo.png')
-
-# col3.image(image, width = 150)
-
-# col2.title('Crypto-Application')
-# col2.markdown('On met la daronne a l abris')
-# col2.markdown('''
-# ''')
-# col2.markdown('''
-# ''')
-# col3.markdown('''
-# ''')
-# col3.markdown('''
-# ''')
-# col3.markdown('''
-# ''')
-# col3.markdown('''
-# ''')
-# col3.markdown('''
-# ''')
-# col3.markdown('''
-# ''')
 #---------------------------------------------------------------------------------------------------
 # About
 expander_bar = col1.beta_expander("About")
@@ -239,26 +217,25 @@ col2.dataframe(df_coins.set_index('coin_symbol') [[ 'coin_name' , 'price' ,
 df_1h = df_coins.sort_values ( by = 'percentChange1h' , ascending = False).head(8)
 df_7d = df_coins.sort_values ( by = 'percentChange7d' , ascending = False).head(8)
 
-col3.markdown('**Evolution sur 1 heure**')
-col3.dataframe ( df_1h.set_index('coin_symbol')  .rename ( columns = {  'percentChange1h' : '%1h' } ) ['%1h'] )
+col2.markdown('**Evolution sur 1 heure**')
+col2.dataframe ( df_1h.set_index('coin_symbol')  .rename ( columns = {  'percentChange1h' : '%1h' } ) [['%1h' , 'price']] )
+col2.markdown('**Evolution sur 7 jours**')
+col2.dataframe ( df_7d.set_index('coin_symbol')  .rename ( columns = {  'percentChange7d' : '%7d' } ) [['%7d' , 'price']] )
 
-col3.markdown('**Evolution sur 7 jours**')
-col3.dataframe ( df_7d.set_index('coin_symbol')  .rename ( columns = {  'percentChange7d' : '%7d' } ) ['%7d'] )
-
-col2.markdown ('''
-''')
-col2.markdown ('''
-''')
-col2.markdown ('''
-''')
-col2.markdown ('''
-''')
-col2.markdown ('''
-''')
-col2.markdown ('''
-''')
-col2.markdown ('''
-''')
+# col2.markdown ('''
+# ''')
+# col2.markdown ('''
+# ''')
+# col2.markdown ('''
+# ''')
+# col2.markdown ('''
+# ''')
+# col2.markdown ('''
+# ''')
+# col2.markdown ('''
+# ''')
+# col2.markdown ('''
+# ''')
 #---------------------------------------------------------------------------------------------------
 # courbe Yahoo 
 col2.title('Courbes Cryptocurrency (Yahoo)')
