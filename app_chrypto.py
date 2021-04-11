@@ -209,33 +209,21 @@ def filedownload(df):
 
 col2.title ('Today Cryptocurrency Prices by Market Cap')
 # col2.dataframe(df_coins [['coin_name' , 'coin_symbol'  ]].set_index ('coin_symbol' ) )
-col2.markdown('**Evolution sur 24h**')
-
-col2.dataframe(df_coins.set_index('coin_symbol') [[ 'coin_name' , 'price' , 
-'percentChange24h' ] ].rename ( columns = {  'percentChange1h' : '%1h' , 'percentChange24h' : '%24h' , 'percentChange7d' : '%7d'  }) .sort_values ( by = '%24h' , ascending = False) )
 
 df_1h = df_coins.sort_values ( by = 'percentChange1h' , ascending = False)
 df_7d = df_coins.sort_values ( by = 'percentChange7d' , ascending = False)
 
 col2.markdown('**Evolution sur 1 heure**')
 col2.dataframe ( df_1h.set_index('coin_symbol')  .rename ( columns = {  'percentChange1h' : '%1h' } ) [['%1h' , 'price']] )
+
+col2.markdown('**Evolution sur 24h**')
+col2.dataframe(df_coins.set_index('coin_symbol') [[ 'percentChange24h' , 'price' ] ].rename ( columns = {  'percentChange24h' : '%24h' }) .sort_values ( by = '%24h' , ascending = False) )
+
+
 col2.markdown('**Evolution sur 7 jours**')
 col2.dataframe ( df_7d.set_index('coin_symbol')  .rename ( columns = {  'percentChange7d' : '%7d' } ) [['%7d' , 'price']] )
 
-# col2.markdown ('''
-# ''')
-# col2.markdown ('''
-# ''')
-# col2.markdown ('''
-# ''')
-# col2.markdown ('''
-# ''')
-# col2.markdown ('''
-# ''')
-# col2.markdown ('''
-# ''')
-# col2.markdown ('''
-# ''')
+
 #---------------------------------------------------------------------------------------------------
 # courbe Yahoo 
 col2.title('Courbes Cryptocurrency (Yahoo)')
